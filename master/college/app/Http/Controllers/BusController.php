@@ -25,7 +25,7 @@ class BusController extends Controller
     {
         $bus = Bus::find($id); // Fetch a single bus
         $roads = Road::all();
-    $drivers = Driver::all(); // Fetch all drivers
+        $drivers = Driver::all(); // Fetch all drivers
     return view('buses.index', compact('bus', 'drivers', 'roads'));
     }
     /**
@@ -34,8 +34,12 @@ class BusController extends Controller
   
     public function create()
     {
-        $drivers = Driver::all(); // Fetch all drivers
-        $roads = Road::all();
+        $assignedDriverIds = Bus::pluck('driver_id')->toArray();
+        $drivers = Driver::whereNotIn('id', $assignedDriverIds)->get();
+       
+        $assignedRoadIds = Bus::pluck('road_id')->toArray();
+        $roads = Road::whereNotIn('id', $assignedRoadIds)->get();
+
     return view('buses.create', compact('drivers', 'roads'));
         
     }
@@ -82,8 +86,12 @@ class BusController extends Controller
      */
     public function edit(Bus $bus)
     {
-        $drivers = Driver::all();
-        $roads = Road::all();
+        $assignedDriverIds = Bus::pluck('driver_id')->toArray();
+        $drivers = Driver::whereNotIn('id', $assignedDriverIds)->get();
+       
+        $assignedRoadIds = Bus::pluck('road_id')->toArray();
+        $roads = Road::whereNotIn('id', $assignedRoadIds)->get();
+
         return view('buses.edit', compact('bus','drivers', 'roads'));
     }
 
@@ -119,7 +127,7 @@ class BusController extends Controller
      */
     public function destroy(Bus $bus)
     {
-         $bus->delete();
+        $bus->delete();
         return redirect('/buses')->with('status','Bus deleted successfully');
     }
 }

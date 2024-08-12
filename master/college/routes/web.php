@@ -16,5 +16,4 @@ Route::resource('/buses', BusController::class);
 
 Route::resource('/drivers', DriverController::class,);
 
-
 Route::resource('/roads', RoadController::class);

@@ -68,11 +68,6 @@
                             </select>
                             @error('road_id') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-                        <!-- <div class="mb-3">
-                            <label>Route Details</label>
-                            <input type="text" name="routing" class="form-control" />
-                            @error('routing') <span class="text-danger">{{$message}}</span> @enderror
-                        </div> -->
                        
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Save</button>
