@@ -15,12 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('regNo');
-            $table->foreignId('driver_id')->constrained('drivers');
+            $table->string('dName');
             $table->string('insurance_id'); 
             $table->date('validity');
             $table->string('incharge'); 
-            $table->foreignId('road_id')->constrained('roads'); 
+            $table->string('RTitle'); 
+            $table->boolean('status')->default(true);
             $table->timestamps();
+
+            $table->foreign('RTitle')->references('RTitle')->on('roads')->onDelete('cascade');
+            $table->foreign('dName')->references('dName')->on('drivers')->onDelete('cascade');
         });
     }
 

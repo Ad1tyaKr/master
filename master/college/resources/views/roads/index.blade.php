@@ -2,15 +2,14 @@
 @section('content')
 
         <div class="card">
-            <div class="card-header">
-                <h2></h2>
+            <div class="card-header text-center">
+                <h4>Route Details</h4>
+                <a href="{{url('/roads/create')}}" class="btn btn-outline-success btn-sm float-start" title="add new student">
+                <i class="fa fa-plus" aria-hidden="true"></i><b>Add New Route</b>
+                </a>
             </div>
             <div class="card-body">
-                <a href="{{url('/roads/create')}}" class="btn btn-success btn-sm" title="add new student">
-                <i class="fa fa-plus" aria-hidden="true"></i>Add New Route
-                </a>
-                <br>
-                <br>
+               
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -19,30 +18,30 @@
                                 <th>Title</th>
                                 <th>PickUp</th>
                                 <th>Destination</th>
-                                <th>Timings</th>
+                                <th>Timing</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($roads as $sum)
+                            @foreach($roads as $road)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$sum->Title}}</td>
-                                <td>{{$sum->PickUp}}</td>
-                                <td>{{$sum->Destination}}</td>
-                                <td>{{$sum->Timings}}</td>
+                                <td>{{$road->RTitle}}</td>
+                                <td>{{$road->PickUp}}</td>
+                                <td>{{$road->Destination}}</td>
+                                <td>{{$road->Timing}}</td>
                                 <td>
-                                <a href="{{ route('roads.edit', $sum->id) }}" class="btn btn-outline-success">
+                                <a href="{{ route('roads.edit', $road->id) }}" class="btn btn-outline-primary btn-sm">
                                     <b>Edit</b>
                                 </a>
 
 
             
                                        
-                                        <form action="{{route('roads.destroy', $sum->id) }}" method="POST" class="d-inline">
+                                        <form action="{{route('roads.destroy', $road->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('Delete')
-                                            <button type="submit" class="btn btn-danger"><b>Delete</b></button>
+                                            <button type="submit" class="btn btn-danger btn-sm"><b>Delete</b></button>
 
                                         </form>
                                     </td>

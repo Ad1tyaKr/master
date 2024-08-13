@@ -2,15 +2,14 @@
 @section('content')
 
         <div class="card">
-            <div class="card-header">
-                <h2></h2>
+            <div class="card-header text-center">
+                <h4>Student Details</h4>
+                <a href="{{url('/students/create')}}" class="btn btn-outline-success btn-sm float-start" title="add new student">
+                <i class="fa fa-plus" aria-hidden="true"></i><b>Add New Student</b>
+                </a>
             </div>
             <div class="card-body">
-                <a href="{{url('/students/create')}}" class="btn btn-success btn-sm" title="add new student">
-                <i class="fa fa-plus" aria-hidden="true"></i>Add New Student
-                </a>
-                <br>
-                <br>
+                
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -26,29 +25,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($students as $item)
+                            @foreach($students as $student)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$item->stdId}}</td>
-                                <td>{{$item->stdName}}</td>
-                                <td>{{$item->branch}}</td>
-                                <td>{{$item->phoneNo}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->address}}</td>
+                                <td>{{$student->stdId}}</td>
+                                <td>{{$student->stdName}}</td>
+                                <td>{{$student->branch}}</td>
+                                <td>{{$student->phoneNo}}</td>
+                                <td>{{$student->email}}</td>
+                                <td>{{$student->address}}</td>
                                 <td>
-                                <a href="{{ route('students.edit', $item->id) }}" class="btn btn-outline-success">
+                                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-outline-primary btn-sm">
                                     <b>Edit</b>
                                 </a>
 
-
-            
-                                       
-                                        <form action="{{route('students.destroy', $item->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="d-inline">
                                             @csrf
-                                            @method('Delete')
-                                            <button type="submit" class="btn btn-danger"><b>Delete</b></button>
-
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"><b>Delete</b></button>
                                         </form>
+            
+                                        
                                     </td>
                                 
                             </tr>

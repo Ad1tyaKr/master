@@ -15,7 +15,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers= Driver::all();
+        $drivers = Driver::where('status', 1)->get();
         return view ('drivers.index')-> with('drivers', $drivers);
     }
 
@@ -34,17 +34,27 @@ class DriverController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'dName' => 'required|string|max:225',
-            'dId' => 'required|string|max:225',
+            'dName' => 'required|alpha',
             'Idproof' => 'required|string|max:225',
-            'DphoneNo' => 'required|string|max:225',
-            'Demail' => 'required|string|max:225',
+            'dId' => 'required|string|max:225',
+            'upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'DphoneNo' => 'required|digits:10',
+            'Demail' => 'required|email',
         ]);
+
+        if ($request->hasFile('upload')) {
+            $image = $request->file('upload');
+            $imageName = time() . '.' . $image->extension();
+            $imagePath = $image->storeAs('public/images', $imageName);
+        }else {
+        $imageName = null; 
+    }
 
         Driver::create([
             'dName' => $request->dName,
-            'dId' => $request->dId,
             'Idproof' => $request->Idproof,
+            'dId' => $request->dId,
+            'upload' => $imageName,
             'DphoneNo' => $request->DphoneNo,
             'Demail' => $request->Demail,
         ]);
@@ -74,17 +84,27 @@ class DriverController extends Controller
     public function update(Request $request, Driver $driver)
     {
         $request->validate([
-            'dName' => 'required|string|max:225',
-            'dId' => 'required|string|max:225',
+            'dName' => 'required|alpha',
             'Idproof' => 'required|string|max:225',
-            'DphoneNo' => 'required|string|max:225',
-            'Demail' => 'required|string|max:225',
+            'dId' => 'required|string|max:225',
+            'upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'DphoneNo' => 'required|digits:10',
+            'Demail' => 'required|email',
         ]);
 
+        if ($request->hasFile('upload')) {
+            $image = $request->file('upload');
+            $imageName = time() . '.' . $image->extension();
+            $imagePath = $image->storeAs('public/images', $imageName);
+        }else {
+        $imageName = null; 
+    }
+        
         $driver->update([
             'dName' => $request->dName,
-            'dId' => $request->dId,
             'Idproof' => $request->Idproof,
+            'dId' => $request->dId,
+            'upload' => $imageName,
             'DphoneNo' => $request->DphoneNo,
             'Demail' => $request->Demail,
         ]);
@@ -97,7 +117,8 @@ class DriverController extends Controller
      */
     public function destroy(Driver $driver)
     {
-         $driver->delete();
+        $driver->status = false;
+        $driver->save();
         return redirect('/drivers')->with('status','Driver deleted successfully');
     }
 }

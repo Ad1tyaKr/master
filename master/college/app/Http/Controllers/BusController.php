@@ -17,7 +17,7 @@ class BusController extends Controller
      */
     public function index()
     {
-        $buses= Bus::all();
+        $buses = Bus::where('status', 1)->get();
         return view ('buses.index')-> with('buses', $buses);
         
     }
@@ -36,11 +36,10 @@ class BusController extends Controller
   
     public function create()
     {
-        $assignedDriverIds = Bus::pluck('driver_id')->toArray();
-        $drivers = Driver::whereNotIn('id', $assignedDriverIds)->get();
+        $assignedDriverIds = Bus::pluck('dName')->toArray();
+        $drivers = Driver::where('status', 1)->whereNotIn('dName', $assignedDriverIds)->get();
        
-        $assignedRoadIds = Bus::pluck('road_id')->toArray();
-        $roads = Road::whereNotIn('id', $assignedRoadIds)->get();
+        $roads = Road::where('status', 1)->get();
         
         return view('buses.create', compact('drivers', 'roads'));
         
@@ -55,21 +54,21 @@ class BusController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'regNo' => 'required|string|max:255',
-            'driver_id' => 'required|exists:drivers,id', 
+            'dName' => 'required|alpha|exists:drivers,dName' ,
             'insurance_id' => 'required|string|max:255',
             'validity' => 'required|date',
             'incharge' => 'required|string|max:255',
-            'road_id' => 'required|string|max:255'
+            'RTitle' => 'required|string|exists:roads,RTitle'
         ]);
       
         Bus::create([
             'title' => $request->input('title'),
             'regNo' => $request->input('regNo'),
-            'driver_id' => $request->input('driver_id'),
+            'dName' => $request->input('dName'),
             'insurance_id' => $request->input('insurance_id'),
             'validity' => $request->input('validity'),
             'incharge' => $request->input('incharge'),
-            'road_id' => $request->input('road_id'),
+            'RTitle' => $request->input('RTitle'),
         ]);
 
         return redirect('buses')->with('status','Buses addedd successfully');
@@ -88,13 +87,15 @@ class BusController extends Controller
      */
     public function edit(Bus $bus)
     {
-        $assignedDriverIds = Bus::pluck('driver_id')->toArray();
-        $drivers = Driver::whereNotIn('id', $assignedDriverIds)->get();
+        
+        $assignedDriverIds = Bus::pluck('dName')->toArray();
+        $drivers = Driver::where('status', 1)->whereNotIn('dName', $assignedDriverIds)->get();
        
-        $assignedRoadIds = Bus::pluck('road_id')->toArray();
-        $roads = Road::whereNotIn('id', $assignedRoadIds)->get();
+        $roads = Road::where('status', 1)->get();
+        // $assignedRoadIds = Bus::pluck('RTitle')->toArray();
+        // $roads = Road::where('status', 1)->whereNotIn('RTitle', $assignedRoadIds)->get();
 
-        return view('buses.edit', compact('bus','drivers', 'roads'));
+        return view('buses.edit', compact('bus','drivers','roads'));
     }
 
     /**
@@ -104,35 +105,36 @@ class BusController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'regNo' => 'required|string|max:255',
-            'driver_id' => 'required|exists:drivers,id', 
+            'regNo' => 'required|alpha|max:255',
+            'dName' => 'required|exists:drivers,dName', 
             'insurance_id' => 'required|string|max:255',
             'validity' => 'required|date',
             'incharge' => 'required|string|max:255',
-            'road_id' => 'required|string|max:255'
+            'RTitle' => 'required|string|exists:roads,RTitle'
         ]);
        
       
         $bus->update([
             'title' => $request->input('title'),
             'regNo' => $request->input('regNo'),
-            'driver_id' => $request->input('driver_id'),
+            'dName' => $request->input('dName'),
             'insurance_id' => $request->input('insurance_id'),
             'validity' => $request->input('validity'),
             'incharge' => $request->input('incharge'),
-            'road_id' => $request->input('road_id'),
+            'RTitle' => $request->input('RTitle'),
         ]);
         
         return redirect('buses')->with('status','Buses addedd successfully');
        
-    }
+    } 
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Bus $bus)
     {
-        $bus->delete();
+        $bus->status = false;
+        $bus->save();
         return redirect('/buses')->with('status','Bus deleted successfully');
     }
 }

@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
             $table->string('dName');
-            $table->string('dId');
             $table->string('Idproof');
+            $table->string('dId');
+            $table->string('upload', 300);
             $table->string('DphoneNo');
             $table->string('Demail');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

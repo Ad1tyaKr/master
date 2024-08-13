@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Add Student
+                        <h4>Add Route Details
                             <a href="{{ url('roads') }}" class="btn btn-danger float-end">back</a> 
                         </h4>
                     </div>
@@ -22,8 +22,8 @@
                             @csrf
                             <div class="mb-3">
                             <label>Title</label>
-                            <input type="text" name="Title" class="form-control" />
-                            @error('Title') <span class="text-danger">{{$message}}</span> @enderror
+                            <input type="text" name="RTitle" class="form-control" />
+                            @error('RTitle') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label>Pick Up</label>
@@ -36,13 +36,18 @@
                             @error('Destination') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Timings</label>
-                            <input type="text" name="Timings" class="form-control" />
-                            @error('Timings') <span class="text-danger">{{$message}}</span> @enderror
+                            <label>Start Time</label>
+                            <input type="time" name="TimingsS" class="form-control" />
+                            @error('TimingsS') <span class="text-danger">{{$message}}</span> @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label>Reach Time</label>
+                            <input type="time" name="TimingsE" class="form-control" />
+                            @error('TimingsE') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                        
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
                         </div>
                     </form>
                        

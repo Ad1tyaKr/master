@@ -10,14 +10,24 @@ class Driver extends Model
 
     protected $table = 'drivers';
     protected $fillable= [
-        'dName', 'dId', 'Idproof', 'DphoneNo', 'Demail', 
+        'dName', 'Idproof', 'dId', 'upload', 'DphoneNo', 'Demail', 
     ];
     
 
     use HasFactory;
     public function buses()
 {
-    return $this->hasMany(Bus::class, 'driver_id');
+    return $this->hasMany(Bus::class, 'dName');
     
+}
+
+public function scopeActive($query)
+{
+    return $query->where('status', true);
+}
+
+public function scopeDeleted($query)
+{
+    return $query->where('status', false);
 }
 }

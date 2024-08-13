@@ -15,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students= Student::all();
+        $students = Student::where('status', 1)->get();
         return view ('students.index')-> with('students', $students);
     }
 
@@ -36,10 +36,10 @@ class StudentController extends Controller
 
         $request->validate([
             'stdId' => 'required|string|max:225',
-            'stdName' => 'required|string|max:225',
+            'stdName' => 'required|alpha',
             'branch' => 'required|string|max:225',
-            'phoneNo' => 'required|string|max:225',
-            'email' => 'required|string|max:225',
+            'phoneNo' => 'required|digits:10',
+            'email' => 'required|email',
             'address' => 'required|string|max:225',
         ]);
 
@@ -78,10 +78,10 @@ class StudentController extends Controller
     {
         $request->validate([
             'stdId' => 'required|string|max:225',
-            'stdName' => 'required|string|max:225',
+            'stdName' => 'required|alpha',
             'branch' => 'required|string|max:225',
-            'phoneNo' => 'required|string|max:225',
-            'email' => 'required|string|max:225',
+            'phoneNo' => 'required|digits:10',
+            'email' => 'required|email',
             'address' => 'required|string|max:225',
         ]);
 
@@ -101,8 +101,10 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-          $student->delete();
-        return redirect('/students')->with('status','Student deleted successfully');
+        $student->status = false;
+        $student->save();
+    
+    return redirect('students')->with('success', 'Student deleted successfully');
     
     }
 }

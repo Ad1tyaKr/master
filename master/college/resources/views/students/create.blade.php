@@ -21,7 +21,7 @@
                         <form action="{{ route('students.store') }}" method="POST"> 
                             @csrf
                             <div class="mb-3">
-                            <label>StudentId</label>
+                            <label>Student Id</label>
                             <input type="text" name="stdId" class="form-control" />
                             @error('stdId') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                        
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
                         </div>
                     </form>
                        

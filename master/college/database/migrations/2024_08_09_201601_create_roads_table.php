@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('roads', function (Blueprint $table) {
             $table->id();
-            $table->string('Title');
+            $table->string('RTitle');
             $table->string('PickUp');
             $table->string('Destination');
-            $table->string('Timings');
+            $table->string('TimingsS');
+            $table->string('TimingsE');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

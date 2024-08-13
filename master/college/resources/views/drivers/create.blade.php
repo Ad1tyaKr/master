@@ -18,17 +18,12 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('drivers.store') }}" method="POST"> 
+                        <form action="{{ route('drivers.store') }}" method="POST" enctype="multipart/form-data"> 
                             @csrf
                             <div class="mb-3">
                             <label>Driver Name</label>
                             <input type="text" name="dName" class="form-control" />
                             @error('dName') <span class="text-danger">{{$message}}</span> @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label>Id No</label>
-                            <input type="text" name="dId" class="form-control" />
-                            @error('dId') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label>Id Proof</label>
@@ -43,6 +38,17 @@
                         </div>
                         <br>
                         <div class="mb-3">
+                            <label>Id No</label>
+                            <input type="text" name="dId" class="form-control" />
+                            @error('dId') <span class="text-danger">{{$message}}</span> @enderror
+                        </div>
+                        <div>
+                            <label for="upload">Upload Id:</label>
+                            <input type="file" id="upload" name="upload" accept="image/*" />
+                            @error('upload') <span class="text-danger">{{$message}}</span> @enderror
+                        </div>
+                      
+                        <div class="mb-3">
                             <label>Phone No</label>
                             <input type="text" name="DphoneNo" class="form-control" />
                             @error('DphoneNo') <span class="text-danger">{{$message}}</span> @enderror
@@ -55,7 +61,7 @@
                         
                        
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
                         </div>
                     </form>
                        

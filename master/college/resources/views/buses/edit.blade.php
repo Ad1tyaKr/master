@@ -32,13 +32,15 @@
                             @error('regNo') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="driver_id">Driver</label>
-                            <select id="driver_id" name="driver_id" class="form-select" value="{{$bus->driver_id}}">
-                                @foreach ($drivers as $driver)
-                                <option value="{{ $driver->id }}">{{ $driver->dName }}</option>
-                                @endforeach
+                            <label for="dName">Driver Name</label>
+                            <select id="dName" name="dName" class="form-select">
+                            @foreach ($drivers as $driver)
+                            <option value="{{ $driver->dName }}" 
+                                {{ $driver->dName == $bus->dName ? 'selected' : '' }}>{{ $driver->dName }}
+                            </option>
+                            @endforeach
                             </select>
-                            @error('driver_id') <span class="text-danger">{{ $message }}</span> @enderror
+                            @error('dName') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label>Insuarance Id</label>
@@ -57,18 +59,19 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="road_id">Route Details</label>
-                            <select id="road_id" name="road_id" class="form-select" value="{{$bus->road_id}}">
+                            <label for="RTitle">Route Details</label>
+                            <select id="RTitle" name="RTitle" class="form-select">
                                 @foreach ($roads as $road)
-                               
-                                <option value="{{ $road->id }}">{{ $road->Title }}</option>
+                                <option value="{{ $road->RTitle }}" 
+                                    {{ $road->RTitle == $bus->RTitle ? 'selected' : '' }}> {{ $road->RTitle }}
+                                </option>
                                 @endforeach
                             </select>
-                            @error('road_id') <span class="text-danger">{{ $message }}</span> @enderror
+                            @error('RTitle') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                        
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
                         </div>
                     </form>
                        

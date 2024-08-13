@@ -12,8 +12,13 @@ class RoadController extends Controller
      */
     public function index()
     {
-        $roads= Road::all();
-        return view('roads.index')-> with('roads', $roads);
+        $roads = Road::where('status', 1)->get()->map(function ($road) {
+            
+            $road->Timing = $road->TimingsS . ' - ' . $road->TimingsE;
+            return $road;
+        });
+    
+        return view('roads.index', compact('roads'));
     }
 
     /**
@@ -30,17 +35,19 @@ class RoadController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Title' => 'required|string|max:225',
+            'RTitle' => 'required|string',
             'PickUp' => 'required|string|max:225',
             'Destination' => 'required|string|max:225',
-            'Timings' => 'required|string|max:225',
+            'TimingsS' => 'required|date_format:H:i',
+            'TimingsE' => 'required|date_format:H:i',
         ]);
 
         Road::create([
-            'Title' => $request->Title,
+            'RTitle' => $request->RTitle,
             'PickUp' => $request->PickUp,
             'Destination' => $request->Destination,
-            'Timings' => $request->Timings,
+            'TimingsS' => $request->TimingsS,
+            'TimingsE' => $request->TimingsE,
         ]);
 
         return redirect('roads')->with('status','Student updated successfully');
@@ -68,17 +75,19 @@ class RoadController extends Controller
     public function update(Request $request, Road $road)
     {
         $request->validate([
-            'Title' => 'required|string|max:225',
+            'RTitle' => 'required|string',
             'PickUp' => 'required|string|max:225',
             'Destination' => 'required|string|max:225',
-            'Timings' => 'required|string|max:225',
+            'TimingsS' => 'required|date_format:H:i',
+            'TimingsE' => 'required|date_format:H:i',
         ]);
 
         $road->update([
-            'Title' => $request->Title,
+            'RTitle' => $request->RTitle,
             'PickUp' => $request->PickUp,
             'Destination' => $request->Destination,
-            'Timings' => $request->Timings,
+            'TimingsS' => $request->TimingsS,
+            'TimingsE' => $request->TimingsE,
         ]);
         return redirect('roads')->with('status','Student updated successfully');
     }
@@ -88,7 +97,8 @@ class RoadController extends Controller
      */
     public function destroy(Road $road)
     {
-        $road->delete();
+        $road->status = false;
+        $road->save();
         return redirect('/roads')->with('status','Student deleted successfully');
     }
 }

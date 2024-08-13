@@ -29,6 +29,7 @@
                 <div class="sidebar">
                     <br>
                     <a class="active" href="{{url('/')}}">Home</a><br>
+                    <a href="{{url('/colleges')}}">College</a><br>
                     <a href="{{url('/students')}}">Student</a><br>
                     <a href="{{url('/buses')}}">Bus Details</a><br>
                     <a href="{{url('/drivers')}}">Driver</a><br>

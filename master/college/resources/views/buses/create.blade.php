@@ -30,17 +30,16 @@
                             <input type="text" name="regNo" class="form-control" />
                             @error('regNo') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="driver_id">Driver</label>
-                            <select id="driver_id" name="driver_id" class="form-select">
-                            <option selected disabled>Select</option>
-                                @foreach ($drivers as $driver)
-                               
-                                <option value="{{ $driver->id }}">{{ $driver->dName }}</option>
+                        <div class="form-group">
+                            <label>Driver Name</label>
+                            <select name="dName" class="form-control">
+                                <option selected disabled>Select Driver</option>
+                                @foreach($drivers as $driver)
+                                <option value="{{ $driver->dName }}">{{ $driver->dName }}</option>
                                 @endforeach
                             </select>
-                            @error('driver_id') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
+
                         <div class="mb-3">
                             <label>Insurance Id</label>
                             <input type="text" name="insurance_id" class="form-control" />
@@ -58,19 +57,18 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="road_id">Route Details</label>
-                            <select id="road_id" name="road_id" class="form-select">
+                            <label for="Title">Route</label>
+                            <select id="RTitle" name="RTitle" class="form-select">
                             <option selected disabled>Select</option>
                                 @foreach ($roads as $road)
-                               
-                                <option value="{{ $road->id }}">{{ $road->Title }}</option>
+                                <option value="{{ $road->RTitle }}">{{ $road->RTitle }}</option>
                                 @endforeach
                             </select>
-                            @error('road_id') <span class="text-danger">{{ $message }}</span> @enderror
+                           
                         </div>
                        
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
                         </div>
                     </form>
                        

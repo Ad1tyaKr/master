@@ -10,14 +10,24 @@ class Road extends Model
 
     protected $table = 'roads';
     protected $fillable= [
-        'Title', 'PickUp', 'Destination', 'Timings'
+        'RTitle', 'PickUp', 'Destination', 'TimingsS', 'TimingsE'
     ];
     use HasFactory;
 
     public function roads()
     {
-        return $this->hasMany(Bus::class, 'road_id');
+        return $this->hasMany(Bus::class, 'RTitle');
         
+    }
+    
+    public function scopeActive($query)
+    {
+        return $query->where('status', true);
+    }
+
+    public function scopeDeleted($query)
+    {
+        return $query->where('status', false);
     }
 
 
