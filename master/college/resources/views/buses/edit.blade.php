@@ -59,7 +59,6 @@
                         <div class="mb-3">
                             <label for="road_id">Route Details</label>
                             <select id="road_id" name="road_id" class="form-select" value="{{$bus->road_id}}">
-                            <option selected disabled>Select</option>
                                 @foreach ($roads as $road)
                                
                                 <option value="{{ $road->id }}">{{ $road->Title }}</option>

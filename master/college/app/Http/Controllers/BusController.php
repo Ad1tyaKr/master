@@ -19,14 +19,16 @@ class BusController extends Controller
     {
         $buses= Bus::all();
         return view ('buses.index')-> with('buses', $buses);
+        
     }
 
     public function viewDetail($id)
     {
-        $bus = Bus::find($id); // Fetch a single bus
+        $bus = Bus::find($id);
         $roads = Road::all();
-        $drivers = Driver::all(); // Fetch all drivers
-    return view('buses.index', compact('bus', 'drivers', 'roads'));
+        $drivers = Driver::all();
+        return view('buses.index', compact('bus', 'drivers', 'roads'));
+       
     }
     /**
      * Show the form for creating a new resource.
@@ -39,8 +41,8 @@ class BusController extends Controller
        
         $assignedRoadIds = Bus::pluck('road_id')->toArray();
         $roads = Road::whereNotIn('id', $assignedRoadIds)->get();
-
-    return view('buses.create', compact('drivers', 'roads'));
+        
+        return view('buses.create', compact('drivers', 'roads'));
         
     }
 
@@ -109,6 +111,7 @@ class BusController extends Controller
             'incharge' => 'required|string|max:255',
             'road_id' => 'required|string|max:255'
         ]);
+       
       
         $bus->update([
             'title' => $request->input('title'),
@@ -119,7 +122,9 @@ class BusController extends Controller
             'incharge' => $request->input('incharge'),
             'road_id' => $request->input('road_id'),
         ]);
+        
         return redirect('buses')->with('status','Buses addedd successfully');
+       
     }
 
     /**
