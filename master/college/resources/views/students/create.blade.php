@@ -14,45 +14,45 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Add Student
-                            <a href="{{ url('students') }}" class="btn btn-danger float-end">back</a> 
+                            <a href="{{ url('students') }}" class="btn btn-close float-end" aria-label="close"></a> 
                         </h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('students.store') }}" method="POST"> 
                             @csrf
                             <div class="mb-3">
-                            <label>Student Id</label>
+                            <label><b>Student Id</b></label>
                             <input type="text" name="stdId" class="form-control" />
                             @error('stdId') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Student Name</label>
+                            <label><b>Student Name</b></label>
                             <input type="text" name="stdName" class="form-control" />
                             @error('stdName') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Branch</label>
+                            <label><b>Branch</b></label>
                             <input type="text" name="branch" class="form-control" />
                             @error('branch') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Phone No</label>
+                            <label><b>Phone No</b></label>
                             <input type="text" name="phoneNo" class="form-control" />
                             @error('phoneNo') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Email</label>
+                            <label><b>Email</b></label>
                             <input type="text" name="email" class="form-control" />
                             @error('email') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Address</label>
+                            <label><b>Address</b></label>
                             <input type="text" name="address" class="form-control" />
                             @error('address') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                        
                         <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
+                        <button type="submit" class="btn btn-outline-success"><b>Save</b></button>
                         </div>
                     </form>
                        

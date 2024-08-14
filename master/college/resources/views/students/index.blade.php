@@ -1,17 +1,19 @@
 @extends('layout')
 @section('content')
 
+
         <div class="card">
-            <div class="card-header text-center">
-                <h4>Student Details</h4>
-                <a href="{{url('/students/create')}}" class="btn btn-outline-success btn-sm float-start" title="add new student">
-                <i class="fa fa-plus" aria-hidden="true"></i><b>Add New Student</b>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Student Details</h4>
+                <a href="{{ url('/students/create') }}" class="btn btn-outline-success btn-sm" title="Add new student">
+                    <i class="fa fa-plus" aria-hidden="true"></i><b>Add New Student</b>
                 </a>
             </div>
+            <br>
             <div class="card-body">
                 
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -35,7 +37,7 @@
                                 <td>{{$student->email}}</td>
                                 <td>{{$student->address}}</td>
                                 <td>
-                                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-outline-primary btn-sm">
+                                <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm">
                                     <b>Edit</b>
                                 </a>
 

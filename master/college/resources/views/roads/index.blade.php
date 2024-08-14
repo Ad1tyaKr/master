@@ -2,16 +2,17 @@
 @section('content')
 
         <div class="card">
-            <div class="card-header text-center">
-                <h4>Route Details</h4>
-                <a href="{{url('/roads/create')}}" class="btn btn-outline-success btn-sm float-start" title="add new student">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Route Details</h4>
+            <a href="{{ url('/roads/create') }}" class="btn btn-outline-success btn-sm" title="Add new route">
                 <i class="fa fa-plus" aria-hidden="true"></i><b>Add New Route</b>
-                </a>
-            </div>
+            </a>
+        </div>
+            <br>
             <div class="card-body">
                
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -31,7 +32,7 @@
                                 <td>{{$road->Destination}}</td>
                                 <td>{{$road->Timing}}</td>
                                 <td>
-                                <a href="{{ route('roads.edit', $road->id) }}" class="btn btn-outline-primary btn-sm">
+                                <a href="{{ route('roads.edit', $road->id) }}" class="btn btn-primary btn-sm">
                                     <b>Edit</b>
                                 </a>
 

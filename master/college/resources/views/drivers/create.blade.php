@@ -14,19 +14,19 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Add Driver
-                            <a href="{{ url('drivers') }}" class="btn btn-danger float-end">back</a> 
+                            <a href="{{ url('drivers') }}" class="btn btn-close float-end" aria-label="close"></a> 
                         </h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('drivers.store') }}" method="POST" enctype="multipart/form-data"> 
                             @csrf
                             <div class="mb-3">
-                            <label>Driver Name</label>
+                            <label><b>Driver Name</b></label>
                             <input type="text" name="dName" class="form-control" />
                             @error('dName') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
-                            <label>Id Proof</label>
+                            <label><b>Id Proof</b></label>
                             <select name="Idproof" id="Idproof" class="form-control">
                                 <option selected disabled>Select</option>
                                 <option value="AadharCard">Aadhar Card</option>
@@ -38,30 +38,30 @@
                         </div>
                         <br>
                         <div class="mb-3">
-                            <label>Id No</label>
+                            <label><b>Id No</b></label>
                             <input type="text" name="dId" class="form-control" />
                             @error('dId') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div>
-                            <label for="upload">Upload Id:</label>
+                            <label for="upload"><b>Upload Id:</b></label>
                             <input type="file" id="upload" name="upload" accept="image/*" />
                             @error('upload') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                       
                         <div class="mb-3">
-                            <label>Phone No</label>
+                            <label><b>Phone No</b></label>
                             <input type="text" name="DphoneNo" class="form-control" />
                             @error('DphoneNo') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Email</label>
+                            <label><b>Email</b></label>
                             <input type="text" name="Demail" class="form-control" />
                             @error('Demail') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         
                        
                         <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
+                        <button type="submit" class="btn btn-outline-success"><b>Save</b></button>
                         </div>
                     </form>
                        

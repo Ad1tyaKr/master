@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Drivers details
-                            <a href="{{ url('/drivers') }}" class="btn btn-danger float-end">back</a> 
+                            <a href="{{ url('/drivers') }}" class="btn btn-close float-end" aria-label="close"></a> 
                         </h4>
                     </div>
                     <div class="card-body">
@@ -22,12 +22,12 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                            <label>Driver Name</label>
+                            <label><b>Driver Name</b></label>
                             <input type="text" name="dName" class="form-control" value="{{$driver->dName}}"/>
                             @error('dName') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
-                            <label>Id Proof</label>
+                            <label><b>Id Proof</b></label>
                             <select name="Idproof" id="Idproof" class="form-control" value="{{$driver->Idproof}}">
                             <option value="" disabled>Select</option>
                             <option value="AadharCard" @selected($driver->Idproof == 'AadharCard')>Aadhar Card</option>
@@ -39,29 +39,29 @@
                             @error('Idproof') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Id No</label>
+                            <label><b>Id No</b></label>
                             <input type="text" name="dId" class="form-control" value="{{$driver->dId}}"/>
                             @error('dId') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div>
-                            <label for="upload">Upload Id:</label>
+                            <label for="upload"><b>Upload Id:</b></label>
                             <input type="file" id="upload" name="upload" accept="image/*"  value="{{$driver->upload}}"/>
                             @error('upload') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         
                         <div class="mb-3">
-                            <label>Phone No</label>
+                            <label><b>Phone No</b></label>
                             <input type="text" name="DphoneNo" class="form-control" value="{{$driver->DphoneNo}}"/>
                             @error('DphoneNo') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Email</label>
+                            <label><b>Email</b></label>
                             <input type="text" name="Demail" class="form-control" value="{{$driver->Demail}}"/>
                             @error('Demail') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
 
                         <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
+                        <button type="submit" class="btn btn-outline-success"><b>Save</b></button>
                         </div>
                     </form>
                        

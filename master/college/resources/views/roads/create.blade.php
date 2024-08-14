@@ -14,40 +14,40 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Add Route Details
-                            <a href="{{ url('roads') }}" class="btn btn-danger float-end">back</a> 
+                            <a href="{{ url('roads') }}" class="btn btn-close float-end" aria-label="close"></a> 
                         </h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('roads.store') }}" method="POST"> 
                             @csrf
                             <div class="mb-3">
-                            <label>Title</label>
+                            <label><b>Title</b></label>
                             <input type="text" name="RTitle" class="form-control" />
                             @error('RTitle') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Pick Up</label>
+                            <label><b>Pick Up</b></label>
                             <input type="text" name="PickUp" class="form-control" />
                             @error('PickUp') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Destination</label>
+                            <label><b>Destination</b></label>
                             <input type="text" name="Destination" class="form-control" />
                             @error('Destination') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Start Time</label>
+                            <label><b>Start Time</b></label>
                             <input type="time" name="TimingsS" class="form-control" />
                             @error('TimingsS') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Reach Time</label>
+                            <label><b>Reach Time</b></label>
                             <input type="time" name="TimingsE" class="form-control" />
                             @error('TimingsE') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                        
                         <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
+                        <button type="submit" class="btn btn-outline-success"><b>Save</b></button>
                         </div>
                     </form>
                        

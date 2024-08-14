@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Route details
-                            <a href="{{ url('/roads') }}" class="btn btn-danger float-end">back</a> 
+                            <a href="{{ url('/roads') }}" class="btn btn-close float-end" aria-label="close"></a> 
                         </h4>
                     </div>
                     <div class="card-body">
@@ -22,33 +22,33 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                            <label>Title</label>
+                            <label><b>Title</b></label>
                             <input type="text" name="RTitle" class="form-control" value="{{$road->RTitle}}"/>
                             @error('RTitle') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Pick Up</label>
+                            <label><b>Pick Up</b></label>
                             <input type="text" name="PickUp" class="form-control" value="{{$road->PickUp}}"/>
                             @error('PickUp') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Destination</label>
+                            <label><b>Destination</b></label>
                             <input type="text" name="Destination" class="form-control" value="{{$road->Destination}}"/>
                             @error('Destination') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Start Time</label>
+                            <label><b>Start Time</b></label>
                             <input type="time" name="TimingsS" class="form-control" value="{{$road->TimingsS}}"/>
                             @error('TimingsS') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Reach Time</label>
+                            <label><b>Reach Time</b></label>
                             <input type="time" name="TimingsE" class="form-control" value="{{$road->TimingsE}}"/>
                             @error('TimingsE') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                        
                         <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
+                        <button type="submit" class="btn btn-outline-success"><b>Save</b></button>
                         </div>
                     </form>
                        

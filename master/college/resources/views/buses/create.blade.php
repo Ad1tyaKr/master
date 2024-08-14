@@ -14,24 +14,24 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Add New Bus
-                            <a href="{{ url('buses') }}" class="btn btn-danger float-end">back</a> 
+                            <a href="{{ url('buses') }}" class="btn btn-close float-end" aria-label="close"></a> 
                         </h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('buses.store') }}" method="POST"> 
                             @csrf
                             <div class="mb-3">
-                            <label>Bus Title</label>
+                            <label><b>Bus Title</b></label>
                             <input type="text" name="title" class="form-control" />
                             @error('title') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Registration No</label>
+                            <label><b>Registration No</b></label>
                             <input type="text" name="regNo" class="form-control" />
                             @error('regNo') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="form-group">
-                            <label>Driver Name</label>
+                            <label><b>Driver Name</b></label>
                             <select name="dName" class="form-control">
                                 <option selected disabled>Select Driver</option>
                                 @foreach($drivers as $driver)
@@ -41,23 +41,23 @@
                         </div>
 
                         <div class="mb-3">
-                            <label>Insurance Id</label>
+                            <label><b>Insurance Id</b></label>
                             <input type="text" name="insurance_id" class="form-control" />
                             @error('insurance_id') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Validity Upto</label>
+                            <label><b>Validity Upto</b></label>
                             <input type="date" name="validity" class="form-control" />
                             @error('validity') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Incharge</label>
+                            <label><b>Incharge</b></label>
                             <input type="text" name="incharge" class="form-control" />
                             @error('incharge') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="Title">Route</label>
+                            <label for="Title"><b>Route</b></label>
                             <select id="RTitle" name="RTitle" class="form-select">
                             <option selected disabled>Select</option>
                                 @foreach ($roads as $road)
@@ -68,7 +68,7 @@
                         </div>
                        
                         <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
+                        <button type="submit" class="btn btn-outline-success"><b>Save</b></button>
                         </div>
                     </form>
                        

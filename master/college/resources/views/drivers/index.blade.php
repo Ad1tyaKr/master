@@ -2,16 +2,17 @@
 @section('content')
 
         <div class="card">
-            <div class="card-header text-center">
-                <h4>Driver drivers</h4>
-                <a href="{{url('/drivers/create')}}" class="btn btn-outline-success btn-sm float-start" title="add new student">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Driver Details</h4>
+            <a href="{{ url('/drivers/create') }}" class="btn btn-outline-success btn-sm" title="Add new driver">
                 <i class="fa fa-plus" aria-hidden="true"></i><b>Add New Driver</b>
-                </a>
-            </div>
+            </a>
+        </div>
+            <br>
             <div class="card-body">
                
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -42,7 +43,7 @@
                                 <td>{{$driver->Demail}}</td>
                                
                                 <td>
-                                <a href="{{ route('drivers.edit', $driver->id) }}" class="btn btn-outline-primary btn-sm">
+                                <a href="{{ route('drivers.edit', $driver->id) }}" class="btn btn-primary btn-sm">
                                     <b>Edit</b>
                                 </a>
             
@@ -58,8 +59,10 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        
 
                     </table>
+                    
                 </div>
             </div>
         </div>

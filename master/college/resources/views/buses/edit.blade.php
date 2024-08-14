@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Bus details
-                            <a href="{{ url('/buses') }}" class="btn btn-danger float-end">back</a> 
+                            <a href="{{ url('/buses') }}" class="btn btn-close float-end" aria-label="close"></a> 
                         </h4>
                     </div>
                     <div class="card-body">
@@ -22,17 +22,17 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                            <label>Bus Title</label>
+                            <label><b>Bus Title</b></label>
                             <input type="text" name="title" class="form-control" value="{{$bus->title}}"/>
                             @error('title') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Registration No</label>
+                            <label><b>Registration No</b></label>
                             <input type="text" name="regNo" class="form-control" value="{{$bus->regNo}}"/>
                             @error('regNo') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="dName">Driver Name</label>
+                            <label for="dName"><b>Driver Name</b></label>
                             <select id="dName" name="dName" class="form-select">
                             @foreach ($drivers as $driver)
                             <option value="{{ $driver->dName }}" 
@@ -43,23 +43,23 @@
                             @error('dName') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Insuarance Id</label>
+                            <label><b>Insuarance Id</b></label>
                             <input type="text" name="insurance_id" class="form-control" value="{{$bus->insurance_id}}"/>
                             @error('insurance_id') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Validity Upto</label>
+                            <label><b>Validity Upto</b></label>
                             <input type="date" name="validity" class="form-control" value="{{$bus->validity}}"/>
                             @error('validity') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Incharge</label>
+                            <label><b>Incharge</b></label>
                             <input type="text" name="incharge" class="form-control" value="{{$bus->incharge}}"/>
                             @error('incharge') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="RTitle">Route Details</label>
+                            <label for="RTitle"><b>Route Details</b></label>
                             <select id="RTitle" name="RTitle" class="form-select">
                                 @foreach ($roads as $road)
                                 <option value="{{ $road->RTitle }}" 
@@ -71,7 +71,7 @@
                         </div>
                        
                         <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-primary"><b>Save</b></button>
+                        <button type="submit" class="btn btn-outline-success"><b>Save</b></button>
                         </div>
                     </form>
                        

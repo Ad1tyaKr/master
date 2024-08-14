@@ -2,17 +2,19 @@
 @section('content')
 
         <div class="card">
-            <div class="card-header text-center">
-                <h4>Bus Details</h4>
-                <a href="{{url('/buses/create')}}" class="btn btn-outline-success btn-sm float-start" title="add new bus">
+       
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Bus Details</h4>
+                <a href="{{url('/buses/create')}}" class="btn btn-outline-success btn-sm" title="add new bus">
                 <i class="fa fa-plus" aria-hidden="true"></i><b>Add New Bus</b>
                 </a>
             </div>
+            <br>
             <div class="card-body">
              
 
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -38,7 +40,7 @@
                                 <td>{{$bus->incharge}}</td>
                                 <td>{{$bus->RTitle}}</td>
                                 <td>
-                                <a href="{{ route('buses.edit', $bus->id) }}" class="btn btn-outline-primary btn-sm"><b>Edit</b></a>
+                                <a href="{{ route('buses.edit', $bus->id) }}" class="btn btn-primary btn-sm"><b>Edit</b></a>
                             
                                         <form action="{{url('/buses', $bus->id) }}" method="POST" class="d-inline">
                                             @csrf
